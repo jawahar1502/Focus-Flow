@@ -1,0 +1,124 @@
+/* ==========================================================================
+   FocusFlow — JARVIS Edition · Animations, reactor & HUD background
+   Only transform / opacity are animated. Everything honours reduced motion.
+   ========================================================================== */
+
+/* ---------------------------------------------------------------- Reactor */
+.reactor {
+  --size: 220px;
+  --spd: 1;
+  position: relative; width: var(--size); height: var(--size); flex: none;
+  perspective: 900px; user-select: none;
+}
+.reactor-body { position: absolute; inset: 0; transform-style: preserve-3d; animation: reactor-sway 14s ease-in-out infinite alternate; }
+.reactor .ring { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.reactor .r1 { transform: translateZ(-22px); animation: spin calc(70s / var(--spd)) linear infinite; }
+.reactor .r2 { transform: translateZ(-8px);  animation: spin-rev calc(40s / var(--spd)) linear infinite; }
+.reactor .r3 { transform: translateZ(8px);   animation: spin calc(26s / var(--spd)) linear infinite; }
+.reactor .r4 { transform: translateZ(20px); }
+.reactor .orbit { position: absolute; inset: 6%; border-radius: 50%; transform: translateZ(14px); }
+.reactor .orbit i { position: absolute; top: -3px; left: 50%; width: 7px; height: 7px; margin-left: -3.5px; border-radius: 50%; background: var(--accent-cyan); box-shadow: 0 0 10px var(--accent-cyan); }
+.reactor .o1 { animation: spin calc(9s / var(--spd)) linear infinite; }
+.reactor .o2 { inset: 17%; animation: spin-rev calc(6.5s / var(--spd)) linear infinite; }
+.reactor .o2 i { background: var(--accent-red); box-shadow: 0 0 10px var(--accent-red); width: 6px; height: 6px; }
+.reactor .o3 { inset: 28%; animation: spin calc(4.5s / var(--spd)) linear infinite; }
+.reactor .o3 i { background: var(--accent-gold); box-shadow: 0 0 10px var(--accent-gold); width: 5px; height: 5px; }
+.reactor-core {
+  position: absolute; left: 50%; top: 50%; width: 24%; height: 24%; margin: -12% 0 0 -12%; border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, #fff 0%, #B9FBFF 22%, var(--accent-cyan) 48%, rgba(66, 184, 255, .35) 72%, transparent 100%);
+  box-shadow: 0 0 28px 6px rgba(87, 240, 245, .45), 0 0 70px 16px rgba(66, 184, 255, .22);
+  transform: translateZ(30px); animation: core-pulse calc(3.2s / var(--spd)) ease-in-out infinite;
+}
+.reactor-halo {
+  position: absolute; inset: 14%; border-radius: 50%; transform: translateZ(-30px);
+  background: radial-gradient(circle, rgba(87, 240, 245, .14), rgba(255, 89, 94, .06) 55%, transparent 70%);
+}
+.reactor.is-active { --spd: 2.6; }
+.reactor.is-active .reactor-core { box-shadow: 0 0 34px 9px rgba(87, 240, 245, .6), 0 0 90px 24px rgba(255, 89, 94, .25); }
+.reactor.is-alert .reactor-core { background: radial-gradient(circle, #fff, #FFD0D0 25%, var(--accent-red) 55%, transparent 100%); box-shadow: 0 0 34px 8px rgba(255, 89, 94, .6); }
+.reactor.sm { --size: 120px; }
+.reactor.xs { --size: 44px; }
+.reactor.xs .reactor-body { animation: none; }
+.reactor.lg { --size: min(360px, 78vw); }
+
+@keyframes spin { to { rotate: 360deg; } }
+@keyframes spin-rev { to { rotate: -360deg; } }
+@keyframes core-pulse { 0%, 100% { scale: .92; opacity: .88; } 50% { scale: 1.08; opacity: 1; } }
+@keyframes reactor-sway { from { transform: rotateX(14deg) rotateY(-14deg); } to { transform: rotateX(-10deg) rotateY(14deg); } }
+
+/* ----------------------------------------------------------- HUD background */
+.hud-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.hud-grid {
+  position: absolute; inset: -2px;
+  background-image:
+    linear-gradient(rgba(87, 240, 245, .05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(87, 240, 245, .05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 20%, transparent 75%);
+  mask-image: radial-gradient(ellipse at 50% 30%, #000 20%, transparent 75%);
+}
+.hud-light { position: absolute; width: 46vmax; height: 46vmax; border-radius: 50%; filter: blur(60px); opacity: .5; }
+.hud-light.l1 { left: -14vmax; top: -18vmax; background: radial-gradient(circle, rgba(66, 184, 255, .22), transparent 70%); animation: drift 38s ease-in-out infinite alternate; }
+.hud-light.l2 { right: -16vmax; bottom: -20vmax; background: radial-gradient(circle, rgba(255, 89, 94, .16), transparent 70%); animation: drift 46s ease-in-out infinite alternate-reverse; }
+.hud-scan { position: absolute; left: 0; right: 0; top: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(87, 240, 245, .35), transparent); opacity: .5; animation: scan 18s linear infinite; }
+.hud-scan.s2 { animation-duration: 27s; animation-delay: -9s; opacity: .3; }
+.hud-ring { position: absolute; right: -90px; bottom: -90px; width: 360px; height: 360px; opacity: .22; animation: spin 140s linear infinite; }
+.hud-particle { position: absolute; bottom: -10px; width: 3px; height: 3px; border-radius: 50%; background: var(--accent-cyan); box-shadow: 0 0 8px var(--accent-cyan); opacity: 0; animation: rise linear infinite; }
+.hud-particle:nth-child(3n) { background: var(--accent-gold); box-shadow: 0 0 8px var(--accent-gold); }
+.hud-particle:nth-child(5n) { background: var(--accent-red); box-shadow: 0 0 8px var(--accent-red); }
+
+@keyframes drift { to { transform: translate3d(8vmax, 6vmax, 0); } }
+@keyframes scan { from { transform: translateY(-10vh); } to { transform: translateY(110vh); } }
+@keyframes rise { 0% { transform: translate3d(0, 0, 0); opacity: 0; } 12% { opacity: .75; } 88% { opacity: .5; } 100% { transform: translate3d(var(--dx, 20px), -105vh, 0); opacity: 0; } }
+
+/* Pause decorative motion while the tab is hidden */
+html.page-hidden .hud-bg *, html.page-hidden .reactor * { animation-play-state: paused !important; }
+
+/* ------------------------------------------------------------- 3D tilt cards */
+.tilt-card {
+  --rx: 0deg; --ry: 0deg; --mx: 50%; --my: 0%;
+  transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry)) translateY(var(--lift, 0));
+  transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s;
+  overflow: hidden;
+}
+.tilt-card::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .3s;
+  background: radial-gradient(260px circle at var(--mx) var(--my), rgba(255, 255, 255, .09), transparent 60%);
+}
+.tilt-card:hover { --lift: -3px; box-shadow: var(--shadow-hover), 0 0 0 1px color-mix(in srgb, var(--acc-solid, #fff) 35%, transparent); }
+.tilt-card:hover::after { opacity: 1; }
+.tilt-card.is-tilting { transition: transform .06s linear, box-shadow .3s; }
+
+/* ---------------------------------------------------------- Progress rings */
+.ring-wrap { position: relative; display: inline-grid; place-items: center; flex: none; }
+.ring-wrap svg { transform: rotate(-90deg); display: block; }
+.ring-wrap .ring-track { stroke: rgba(255, 255, 255, .08); fill: none; }
+.ring-wrap .ring-fill { fill: none; stroke-linecap: round; transition: stroke-dashoffset .9s var(--ease); }
+.ring-label { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; line-height: 1.1; }
+.ring-label b { font-size: 1.45em; font-variant-numeric: tabular-nums; }
+.ring-label span { font-size: .68em; color: var(--text-secondary); font-family: var(--font-mono); letter-spacing: .08em; text-transform: uppercase; }
+
+/* ---------------------------------------------------------- Misc animations */
+.fade-up { animation: fade-up .5s var(--ease) both; }
+.pulse-red { position: relative; }
+.pulse-red::after { content: ""; position: absolute; inset: -2px; border-radius: inherit; border: 2px solid var(--accent-red); opacity: 0; animation: ring-alert 1.4s ease-out infinite; pointer-events: none; }
+@keyframes ring-alert { 0% { opacity: .9; transform: scale(1); } 100% { opacity: 0; transform: scale(1.06); } }
+.blink { animation: blink 1.2s steps(2, start) infinite; }
+@keyframes blink { to { visibility: hidden; } }
+.status-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent-cyan); box-shadow: 0 0 10px var(--accent-cyan); animation: core-pulse 2.4s ease-in-out infinite; display: inline-block; }
+
+/* ----------------------------------------------------------- Reduced motion */
+html[data-motion="reduced"] *, html[data-motion="reduced"] *::before, html[data-motion="reduced"] *::after {
+  animation: none !important; transition-duration: .01ms !important; scroll-behavior: auto !important;
+}
+html[data-motion="reduced"] .reactor-body { transform: rotateX(8deg) rotateY(-8deg); }
+html[data-motion="reduced"] .hud-particle, html[data-motion="reduced"] .hud-scan, html[data-motion="reduced"] .hud-light { display: none; }
+html[data-motion="reduced"] .tilt-card { transform: none !important; }
+html[data-motion="reduced"] .ring-wrap .ring-fill, html[data-motion="reduced"] .bar > i { transition: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  html:not([data-motion="full"]) *, html:not([data-motion="full"]) *::before, html:not([data-motion="full"]) *::after {
+    animation: none !important; transition-duration: .01ms !important; scroll-behavior: auto !important;
+  }
+  html:not([data-motion="full"]) .hud-particle, html:not([data-motion="full"]) .hud-scan { display: none; }
+  html:not([data-motion="full"]) .tilt-card { transform: none !important; }
+}

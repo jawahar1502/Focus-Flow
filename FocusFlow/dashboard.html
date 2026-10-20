@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0B0D18">
+  <title>Dashboard — FocusFlow · JARVIS Edition</title>
+  <meta name="description" content="FocusFlow personal command center.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/modules.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="app">
+  <a class="skip-link" href="#view">Skip to main content</a>
+  <noscript><p style="padding:24px">FocusFlow needs JavaScript enabled to run.</p></noscript>
+
+  <div class="shell" id="shell">
+    <aside class="sidebar" id="sidebar" aria-label="Primary">
+      <div class="sidebar-brand">
+        <span id="brandEmblem" aria-hidden="true"></span>
+        <div>
+          <div class="brand-name">FocusFlow</div>
+          <div class="hud-label">JARVIS Edition</div>
+        </div>
+      </div>
+      <nav aria-label="Main navigation" class="sidebar-nav">
+        <ul id="navList"></ul>
+      </nav>
+      <div class="sidebar-foot">
+        <a class="focus-pill" id="focusPill" href="#/timer" hidden>
+          <span class="status-dot" aria-hidden="true"></span>
+          <span><span class="hud-label" id="focusPillLabel">Focus sequence</span><b class="num" id="focusPillTime">25:00</b></span>
+        </a>
+        <div class="sys-status"><span class="status-dot" aria-hidden="true"></span><span class="hud-label">System status · Online</span></div>
+        <div class="user-card">
+          <span class="avatar" id="sideAvatar" aria-hidden="true">?</span>
+          <div class="user-meta"><div class="user-name wrap-text" id="sideName">Pilot</div><div class="hud-label">Local profile</div></div>
+          <button class="btn btn-ghost btn-icon btn-sm" id="sideLogout" type="button" aria-label="Log out"></button>
+        </div>
+      </div>
+    </aside>
+    <div class="scrim" id="scrim" hidden></div>
+
+    <div class="main-col">
+      <header class="topbar">
+        <button class="btn btn-ghost btn-icon menu-btn" id="menuBtn" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="sidebar"></button>
+        <div class="topbar-title">
+          <span class="hud-label" id="crumb">Mission control</span>
+          <h1 id="pageTitle">Dashboard</h1>
+        </div>
+        <div class="topbar-actions">
+          <button class="btn btn-primary btn-sm" id="quickAdd" type="button"><span id="quickAddIcon"></span><span class="qa-text">Quick task</span></button>
+
+          <div class="menu-anchor">
+            <button class="btn btn-ghost btn-icon bell-btn" id="bellBtn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="bellMenu" aria-label="Notifications">
+              <span id="bellIcon"></span><span class="bell-count" id="bellCount" hidden>0</span>
+            </button>
+            <div class="popover" id="bellMenu" hidden>
+              <div class="popover-head"><b>Alerts</b><span class="hud-label">Mission control</span></div>
+              <div id="bellList"></div>
+            </div>
+          </div>
+
+          <div class="menu-anchor">
+            <button class="profile-btn" id="profileBtn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="profileMenu">
+              <span class="avatar" id="topAvatar" aria-hidden="true">?</span>
+              <span class="profile-name wrap-text" id="topName">Pilot</span>
+            </button>
+            <div class="popover menu" id="profileMenu" hidden>
+              <div class="popover-head"><b id="menuName">Pilot</b><span class="hud-label" id="menuEmail"></span></div>
+              <a class="menu-item" href="#/settings" id="menuSettings"></a>
+              <label class="menu-item menu-check" for="menuMotion"><input type="checkbox" id="menuMotion"> <span>Reduce motion</span></label>
+              <button class="menu-item danger" id="menuLogout" type="button"></button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main id="view" tabindex="-1"></main>
+    </div>
+  </div>
+
+  <!-- Core -->
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/reactor.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/app.js"></script>
+  <!-- Feature modules (each registers its own view) -->
+  <script src="js/tasks.js"></script>
+  <script src="js/reminders.js"></script>
+  <script src="js/timer.js"></script>
+  <script src="js/timetable.js"></script>
+  <script src="js/habits.js"></script>
+  <script src="js/analytics.js"></script>
+  <script src="js/goals.js"></script>
+  <script src="js/notes.js"></script>
+  <script src="js/journal.js"></script>
+  <script src="js/expenses.js"></script>
+  <script src="js/sample.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script>FF.start();</script>
+</body>
+</html>

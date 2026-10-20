@@ -1,0 +1,93 @@
+/* ==========================================================================
+   FocusFlow — JARVIS Edition · Responsive rules
+   Breakpoints: 1200 (tablet landscape) · 900 (drawer nav) · 760 (single column) · 480 (phones)
+   ========================================================================== */
+
+@media (max-width: 1200px) {
+  .span-3, .span-4 { grid-column: span 6; }
+  .span-5, .span-7, .span-8 { grid-column: 1 / -1; }
+  .hero-panel { grid-template-columns: minmax(0, 1fr) auto; }
+  .notes-layout.is-editing { grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); }
+}
+
+@media (max-width: 900px) {
+  .shell { grid-template-columns: minmax(0, 1fr); }
+  .sidebar {
+    position: fixed; left: 0; top: 0; bottom: 0; width: min(300px, 86vw); height: 100dvh;
+    transform: translateX(-102%); transition: transform .28s var(--ease); box-shadow: 20px 0 50px rgba(0, 0, 0, .5); z-index: 60;
+  }
+  body.nav-open .sidebar { transform: none; }
+  body.nav-open { overflow: hidden; }
+  .scrim { z-index: 55; }
+  .menu-btn { display: inline-flex; }
+  .sidebar-nav a[aria-current="page"]::before { left: -14px; }
+  .profile-name { display: none; }
+  .profile-btn { padding: 3px; max-width: none; }
+  .hero-panel { grid-template-columns: minmax(0, 1fr); padding: 20px; }
+  .hero-reactor-wrap { display: none; }
+  .notes-layout.is-editing { grid-template-columns: minmax(0, 1fr); }
+  .notes-layout.is-editing .notes-list { display: none; }
+  .back-btn { display: inline-flex; }
+  .note-editor { position: static; }
+  .onboard { grid-template-columns: minmax(0, 1fr); text-align: left; }
+  .onboard .reactor { display: none; }
+}
+
+@media (max-width: 760px) {
+  .span-3, .span-4, .span-5, .span-6, .span-7, .span-8 { grid-column: 1 / -1; }
+  .form-grid { grid-template-columns: minmax(0, 1fr); }
+  .tt-desktop { display: none; }
+  .tt-mobile { display: block; }
+  .timer-link { grid-template-columns: minmax(0, 1fr); }
+  .stat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .page-head { align-items: stretch; }
+  .page-head > .btn, .page-head > .row { align-self: flex-start; }
+  .filters { padding: 10px; }
+  .filter-selects { width: 100%; }
+  .filter-selects select { min-width: 0; flex: 1 1 45%; }
+  .task-item { flex-wrap: wrap; padding: 12px 12px 12px 16px; }
+  .task-actions { margin-left: auto; }
+  .txn { flex-wrap: wrap; }
+  .txn-amt { margin-left: auto; }
+  .toasts { left: 16px; right: 16px; width: auto; bottom: 12px; }
+  .modal-foot .btn { flex: 1 1 auto; }
+}
+
+@media (max-width: 480px) {
+  #view { padding: 16px 14px 48px; }
+  .topbar { padding: 6px 12px; gap: 8px; }
+  .topbar-title h1 { font-size: 1.05rem; }
+  .qa-text { display: none; }
+  #quickAdd { width: 42px; padding: 0; min-height: 42px; }
+  .stat-grid { gap: 10px; }
+  .stat-card { padding: 12px; }
+  .stat-value { font-size: 1.6rem; }
+  .card { padding: 14px; }
+  .hero-panel h2 { font-size: 1.35rem; }
+  .mood-btn { min-width: 54px; padding: 6px; }
+  .mood-row { gap: 6px; }
+  .cal-day { min-height: 38px; }
+  .week-label { min-width: 0; font-size: .9rem; }
+  .task-check, .habit-check.sm { width: 36px; height: 36px; }
+  .donut-row { justify-content: center; }
+  .dur-grid { grid-template-columns: minmax(0, 1fr); }
+  .btn { min-height: 44px; }
+  .btn-sm { min-height: 40px; }
+  .btn-icon.btn-sm { width: 40px; }
+  .heatmap { grid-template-rows: repeat(7, 10px); }
+}
+
+@media (max-width: 340px) {
+  .stat-grid { grid-template-columns: minmax(0, 1fr); }
+  .timer-stage { width: 240px; }
+  .tt-days button { font-size: .75rem; }
+}
+
+@media (min-width: 1700px) {
+  :root { --content-max: 1640px; }
+}
+
+@media print {
+  .sidebar, .topbar, .hud-bg, .scrim { display: none !important; }
+  body { background: #fff; color: #000; }
+}

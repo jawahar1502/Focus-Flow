@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0B0D18">
+  <title>Create account — FocusFlow · JARVIS Edition</title>
+  <meta name="description" content="Create a local demo account for FocusFlow, your personal productivity command center.">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body class="auth" data-page="signup">
+  <a class="skip-link" href="#main">Skip to sign-up form</a>
+  <noscript><p style="padding:24px">FocusFlow needs JavaScript enabled to run.</p></noscript>
+
+  <div class="auth-layout">
+    <section class="auth-hero" id="hero" aria-label="About FocusFlow"></section>
+
+    <main id="main" class="auth-panel">
+      <div class="auth-card">
+        <p class="eyebrow">Initialize profile</p>
+        <h2>Create your account</h2>
+        <p class="lead">A local demo account that keeps your data separate in this browser.</p>
+
+        <div id="formMsg" class="notice form-msg" role="alert"></div>
+
+        <form id="signupForm" class="auth-form" novalidate>
+          <div class="field">
+            <label for="name">Full name</label>
+            <input id="name" name="name" type="text" autocomplete="name" maxlength="60" required aria-describedby="name-err">
+            <div class="field-error" id="name-err" aria-live="polite"></div>
+          </div>
+
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="email-err">
+            <div class="field-error" id="email-err" aria-live="polite"></div>
+          </div>
+
+          <div class="field">
+            <label for="password">Password</label>
+            <div class="pw-wrap">
+              <input id="password" name="password" type="password" autocomplete="new-password" required aria-describedby="password-err pw-strength-text">
+              <button type="button" class="pw-toggle" data-toggle="password" aria-label="Show password" aria-pressed="false"></button>
+            </div>
+            <div class="strength" id="strength" data-score="-1">
+              <div class="strength-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+              <div class="strength-text" id="pw-strength-text" aria-live="polite"></div>
+            </div>
+            <div class="field-hint">At least 8 characters with a letter and a number.</div>
+            <div class="field-error" id="password-err" aria-live="polite"></div>
+          </div>
+
+          <div class="field">
+            <label for="confirm">Confirm password</label>
+            <div class="pw-wrap">
+              <input id="confirm" name="confirm" type="password" autocomplete="new-password" required aria-describedby="confirm-err">
+              <button type="button" class="pw-toggle" data-toggle="confirm" aria-label="Show confirmation password" aria-pressed="false"></button>
+            </div>
+            <div class="field-error" id="confirm-err" aria-live="polite"></div>
+          </div>
+
+          <button class="btn btn-primary btn-lg btn-block" type="submit" id="submitBtn">Create account</button>
+        </form>
+
+        <p class="auth-alt">Already have an account? <a href="login.html">Sign in</a></p>
+
+        <div class="notice security-note" data-accent="flame">
+          <span id="noteIcon"></span>
+          <span><strong>Demo authentication.</strong> Your password is salted and hashed in this browser, but this is not real security. Use a throw-away password and no sensitive data.</span>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/reactor.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/auth-pages.js"></script>
+</body>
+</html>

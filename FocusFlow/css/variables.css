@@ -1,0 +1,99 @@
+/* ==========================================================================
+   FocusFlow — JARVIS Edition · Design tokens
+   All colors, gradients, spacing and motion values live here.
+   ========================================================================== */
+
+:root {
+  color-scheme: dark;
+
+  /* ---- Base surfaces ---- */
+  --bg-main: #0B0D18;
+  --bg-sidebar: #121426;
+  --bg-card: #191C2E;
+  --bg-elevated: #24283B;
+  --border-color: #303449;
+  --text-primary: #F5F7FF;
+  --text-secondary: #A7AEC4;
+  --text-muted: #8B93AD;
+
+  /* ---- Gradient tokens ---- */
+  --gradient-iron-red: linear-gradient(160deg, #FF595E, #B91C1C);
+  --gradient-gold-pink: linear-gradient(160deg, #FFD166, #FF4FA3);
+  --gradient-reactor-teal: linear-gradient(160deg, #55E6C1, #159A91);
+  --gradient-stark-blue: linear-gradient(160deg, #45B7D8, #25256E);
+  --gradient-arc-blue: linear-gradient(160deg, #B4DCFF, #628BFF);
+  --gradient-cyber-violet: linear-gradient(160deg, #9747FF, #FF4FA3);
+  --gradient-progress-green: linear-gradient(160deg, #35C66F, #E5F45B);
+  --gradient-armor-gold: linear-gradient(160deg, #FFD447, #FF984D);
+  --gradient-alert-flame: linear-gradient(160deg, #FFAD33, #F01414);
+  --gradient-energy-cyan: linear-gradient(160deg, #57F0F5, #42B8FF);
+
+  /* ---- Solid accent colors (text / icons / strokes on dark surfaces) ---- */
+  --accent-red: #FF595E;
+  --accent-gold: #FFD166;
+  --accent-pink: #FF4FA3;
+  --accent-teal: #55E6C1;
+  --accent-blue: #45B7D8;
+  --accent-arc: #B4DCFF;
+  --accent-violet: #B27CFF;
+  --accent-green: #35C66F;
+  --accent-armor: #FFD447;
+  --accent-flame: #FFAD33;
+  --accent-cyan: #57F0F5;
+
+  /* ---- Semantic colors ---- */
+  --success: #34D399;
+  --warning: #FBBF24;
+  --danger: #F87171;
+  --info: #20D9F5;
+
+  /* ---- Foreground used on LIGHT gradients ---- */
+  --on-light: #0B0D18;
+  --on-dark: #FFFFFF;
+
+  /* ---- Primary button: Iron Red with a dark overlay to keep white text AA-readable ---- */
+  --btn-primary-bg: linear-gradient(rgba(11, 13, 24, .22), rgba(11, 13, 24, .22)), var(--gradient-iron-red);
+
+  /* ---- Typography ---- */
+  --font-sans: "Segoe UI", system-ui, -apple-system, "Inter", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  --fs-xs: .72rem;
+  --fs-sm: .85rem;
+  --fs-md: 1rem;
+  --fs-lg: clamp(1.1rem, 1rem + .5vw, 1.3rem);
+  --fs-xl: clamp(1.4rem, 1.1rem + 1.2vw, 2rem);
+  --fs-2xl: clamp(1.8rem, 1.3rem + 2vw, 2.8rem);
+
+  /* ---- Shape & elevation ---- */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, .35);
+  --shadow-hover: 0 18px 40px rgba(0, 0, 0, .45);
+  --glow-cyan: 0 0 24px rgba(87, 240, 245, .22);
+  --glow-red: 0 0 24px rgba(255, 89, 94, .28);
+  --focus-ring: 0 0 0 3px rgba(87, 240, 245, .6);
+
+  /* ---- Layout ---- */
+  --sidebar-w: 264px;
+  --topbar-h: 64px;
+  --content-max: 1480px;
+  --gap: 16px;
+
+  /* ---- Motion ---- */
+  --ease: cubic-bezier(.22, .8, .3, 1);
+  --dur-fast: .15s;
+  --dur: .28s;
+}
+
+/* ---- Accent theming: any element with data-accent exposes --acc / --acc-solid / --acc-tint ---- */
+[data-accent="red"]    { --acc: var(--gradient-iron-red);      --acc-solid: var(--accent-red);    --acc-tint: rgba(255, 89, 94, .14); }
+[data-accent="gold"]   { --acc: var(--gradient-gold-pink);     --acc-solid: var(--accent-gold);   --acc-tint: rgba(255, 209, 102, .13); }
+[data-accent="teal"]   { --acc: var(--gradient-reactor-teal);  --acc-solid: var(--accent-teal);   --acc-tint: rgba(85, 230, 193, .13); }
+[data-accent="blue"]   { --acc: var(--gradient-stark-blue);    --acc-solid: var(--accent-blue);   --acc-tint: rgba(69, 183, 216, .14); }
+[data-accent="arc"]    { --acc: var(--gradient-arc-blue);      --acc-solid: var(--accent-arc);    --acc-tint: rgba(180, 220, 255, .12); }
+[data-accent="violet"] { --acc: var(--gradient-cyber-violet);  --acc-solid: var(--accent-violet); --acc-tint: rgba(151, 71, 255, .16); }
+[data-accent="green"]  { --acc: var(--gradient-progress-green);--acc-solid: var(--accent-green);  --acc-tint: rgba(53, 198, 111, .13); }
+[data-accent="armor"]  { --acc: var(--gradient-armor-gold);    --acc-solid: var(--accent-armor);  --acc-tint: rgba(255, 212, 71, .12); }
+[data-accent="flame"]  { --acc: var(--gradient-alert-flame);   --acc-solid: var(--accent-flame);  --acc-tint: rgba(255, 173, 51, .14); }
+[data-accent="cyan"]   { --acc: var(--gradient-energy-cyan);   --acc-solid: var(--accent-cyan);   --acc-tint: rgba(87, 240, 245, .12); }
